@@ -16,10 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         
-        window.rootViewController = LoginViewController()
+        loginApp()
         window.makeKeyAndVisible()
         
         return true
     }
+    
+    func loginApp(){
+        self.window?.rootViewController = navController(vc: LoginViewController())
+    }
+    
+    func mainApp(){
+        self.window?.rootViewController = navController(vc: MainViewController())
+    }
+    
+    func navController(vc: UIViewController) -> UIViewController{
+        let viewController = UINavigationController(rootViewController: vc)
+        viewController.navigationBar.isHidden = true
+        
+        return viewController
+    
+    }
+    
 }
 

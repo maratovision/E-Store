@@ -18,6 +18,7 @@ class BaseViewController: UIViewController{
     }
     
     func setupConstrains(){
+        
     }
     
     func setupViews(){
