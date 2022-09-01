@@ -105,14 +105,121 @@ class LoginViewController: BaseViewController{
         return label
     }()
     
+    private lazy var miniLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "or"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor(red: 0.514, green: 0.514, blue: 0.569, alpha: 1)
+        
+        return label
+    }()
+    
+    private lazy var socialStackView: UIStackView = {
+        let sv = UIStackView()
+        
+        sv.axis = .horizontal
+        sv.distribution = .fillEqually
+        sv.spacing = 8
+        
+        return sv
+    }()
+    
+    private lazy var facebookIcon: UIImageView = {
+        let icon = UIImageView()
+
+        icon.contentMode = .scaleAspectFit
+        icon.image = UIImage(named: "facebook")
+
+        return icon
+    }()
+
+    private lazy var twitterIcon: UIImageView = {
+        let icon = UIImageView()
+
+        icon.contentMode = .scaleAspectFit
+        icon.image = UIImage(named: "twitter")
+
+        return icon
+    }()
+
+    private lazy var linkedInIcon: UIImageView = {
+        let icon = UIImageView()
+
+        icon.contentMode = .scaleAspectFit
+        icon.image = UIImage(named: "linkedin")
+
+        return icon
+    }()
+    
+    private lazy var facebookLabel:UILabel = {
+        let label = UILabel()
+        
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor(red: 0.886, green: 0.886, blue: 0.878, alpha: 1).cgColor
+        label.snp.makeConstraints{
+            $0.height.equalTo(60)
+            $0.width.equalTo(100)
+        }
+
+        return label
+    }()
+
+    private lazy var twitterLabel:UILabel = {
+        let label = UILabel()
+
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor(red: 0.886, green: 0.886, blue: 0.878, alpha: 1).cgColor
+        label.snp.makeConstraints{
+            $0.height.equalTo(60)
+            $0.width.equalTo(100)
+        }
+
+        return label
+    }()
+
+    private lazy var linkedInLabel:UILabel = {
+        let label = UILabel()
+
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor(red: 0.886, green: 0.886, blue: 0.878, alpha: 1).cgColor
+        label.snp.makeConstraints{
+            $0.height.equalTo(60)
+            $0.width.equalTo(100)
+        }
+
+        return label
+    }()
+    
+    private lazy var footerLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "Don't have an account? Sign Up"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor(red: 0.514, green: 0.514, blue: 0.569, alpha: 1)
+        
+        return label
+    }()
+    
     override func setupViews() {
         view.addSubview(mainLabel)
         view.addSubview(imageIcon)
         view.addSubview(stackView)
         view.addSubview(subLabel)
         view.addSubview(loginLabel)
+        view.addSubview(miniLabel)
+        view.addSubview(socialStackView)
+        view.addSubview(footerLabel)
+        facebookLabel.addSubview(facebookIcon)
+        twitterLabel.addSubview(twitterIcon)
+        linkedInLabel.addSubview(linkedInIcon)
+        
         passTextField.rightView = securityIcon
+        [facebookLabel, twitterLabel, linkedInLabel].forEach{socialStackView.addArrangedSubview($0)}
         [nameTextField, passTextField].forEach{stackView.addArrangedSubview($0)}
+        
     }
     
     override func setupConstrains() {
@@ -148,6 +255,40 @@ class LoginViewController: BaseViewController{
             $0.trailing.equalToSuperview().offset(-30)
             $0.width.equalTo(315)
             $0.height.equalTo(60)
+        }
+        
+        miniLabel.snp.makeConstraints{
+            $0.top.equalTo(loginLabel.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
+        
+        socialStackView.snp.makeConstraints{
+            $0.top.equalTo(miniLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().offset(30)
+            $0.trailing.equalToSuperview().offset(-30)
+        }
+        
+        facebookIcon.snp_makeConstraints{
+            $0.centerX.equalTo(facebookLabel)
+            $0.centerY.equalTo(facebookLabel)
+            $0.size.equalTo(15)
+        }
+        
+        twitterIcon.snp_makeConstraints{
+            $0.centerX.equalTo(twitterLabel)
+            $0.centerY.equalTo(twitterLabel)
+            $0.size.equalTo(15)
+        }
+
+        linkedInIcon.snp_makeConstraints{
+            $0.centerX.equalTo(linkedInLabel)
+            $0.centerY.equalTo(linkedInLabel)
+            $0.size.equalTo(15)
+        }
+        
+        footerLabel.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(socialStackView.snp.bottom).offset(35)
         }
     }
 }
