@@ -10,6 +10,8 @@ import SnapKit
 
 class LoginViewController: BaseViewController{
     
+    var viewModel = LoginViewModel()
+    
     private lazy var mainLabel: UILabel = {
         let ml = UILabel()
         
@@ -49,6 +51,7 @@ class LoginViewController: BaseViewController{
         tf.snp.makeConstraints{
             $0.height.equalTo(60)
         }
+        tf.delegate = self
         
         return tf
     }()
@@ -64,6 +67,7 @@ class LoginViewController: BaseViewController{
         tf.snp.makeConstraints{
             $0.height.equalTo(60)
         }
+        tf.delegate = self
         
         return tf
     }()
@@ -71,7 +75,7 @@ class LoginViewController: BaseViewController{
     private lazy var securityIcon: UIImageView = {
         let icon = UIImageView()
         
-        icon.image = UIImage.init(named: "shape")
+        icon.image = UIImage.init(named: "Shape")
         icon.contentMode = .scaleAspectFit
         icon.isUserInteractionEnabled = true
         
@@ -101,6 +105,9 @@ class LoginViewController: BaseViewController{
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
+        label.isUserInteractionEnabled = true
+        let loginTapped = UITapGestureRecognizer(target: self, action: #selector(loginTapped))
+        label.addGestureRecognizer(loginTapped)
         
         return label
     }()
@@ -199,7 +206,9 @@ class LoginViewController: BaseViewController{
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor(red: 0.514, green: 0.514, blue: 0.569, alpha: 1)
-        
+        label.isUserInteractionEnabled = true
+        let tappedSignUp = UITapGestureRecognizer(target: self, action: #selector(signUpTapped))
+        label.addGestureRecognizer(tappedSignUp)
         return label
     }()
     
@@ -225,45 +234,45 @@ class LoginViewController: BaseViewController{
     override func setupConstrains() {
         mainLabel.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(computedHeight(30))
         }
         
         imageIcon.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(mainLabel.snp.bottom).offset(60)
-            $0.width.equalTo(100)
+            $0.top.equalTo(mainLabel.snp.bottom).offset(computedHeight(30))
+            $0.width.equalTo(computedWidth(100))
         }
         
         stackView.snp.makeConstraints{
-            $0.top.equalTo(imageIcon.snp.bottom).offset(50)
+            $0.top.equalTo(imageIcon.snp.bottom).offset(computedHeight(50))
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
         }
         
         securityIcon.snp.makeConstraints{
-            $0.size.equalTo(26)
+            $0.size.equalTo( 26)
         }
         
         subLabel.snp.makeConstraints{
-            $0.top.equalTo(stackView.snp.bottom).offset(14)
+            $0.top.equalTo(stackView.snp.bottom).offset(computedHeight(14))
             $0.trailing.equalToSuperview().offset(-16)
         }
         
         loginLabel.snp.makeConstraints{
-            $0.top.equalTo(subLabel.snp.bottom).offset(50)
+            $0.top.equalTo(subLabel.snp.bottom).offset(computedHeight(50))
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().offset(-30)
-            $0.width.equalTo(315)
-            $0.height.equalTo(60)
+            $0.width.equalTo(computedWidth(315))
+            $0.height.equalTo(computedHeight(60))
         }
         
         miniLabel.snp.makeConstraints{
-            $0.top.equalTo(loginLabel.snp.bottom).offset(16)
+            $0.top.equalTo(loginLabel.snp.bottom).offset(computedHeight(16))
             $0.centerX.equalToSuperview()
         }
         
         socialStackView.snp.makeConstraints{
-            $0.top.equalTo(miniLabel.snp.bottom).offset(16)
+            $0.top.equalTo(miniLabel.snp.bottom).offset(computedHeight(16))
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().offset(-30)
         }
@@ -288,7 +297,17 @@ class LoginViewController: BaseViewController{
         
         footerLabel.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(socialStackView.snp.bottom).offset(35)
+            $0.top.equalTo(socialStackView.snp.bottom).offset(computedHeight(35))
+        }
+    }
+    
+    override func setupValues() {
+        viewModel.isUserAuthorized = {(isUserAuthorized) in
+            if isUserAuthorized{
+                self.appDelegate.mainApp()
+            } else{
+                print("idiot")
+            }
         }
     }
 }
@@ -296,5 +315,24 @@ class LoginViewController: BaseViewController{
 extension LoginViewController{
     @objc func iconTapped(){
         passTextField.isSecureTextEntry.toggle()
+    }
+    
+    @objc func signUpTapped(){
+        let vc = SignUpViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func loginTapped(){
+        guard let login = nameTextField.text, let password = passTextField.text else {return}
+        if !login.isEmpty && !password.isEmpty{
+            viewModel.authorizeUser(login: login, password: password)
+        }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

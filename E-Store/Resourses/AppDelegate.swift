@@ -16,7 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         
-        loginApp()
+        if let user = UserDefaults.standard.string(forKey: "login"){
+            if user.isEmpty{
+                loginApp()
+            }
+            else{
+                mainApp()
+            }
+        }
+        else{
+            loginApp()
+        }
+        
         window.makeKeyAndVisible()
         
         return true
@@ -26,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navController(vc: LoginViewController())
     }
     
-    func mainApp(){
-        self.window?.rootViewController = navController(vc: MainViewController())
+    func mainApp(){ 
+        self.window?.rootViewController = navController(vc: MainTabBarController())
     }
     
     func navController(vc: UIViewController) -> UIViewController{
