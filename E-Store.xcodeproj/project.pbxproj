@@ -23,6 +23,10 @@
 		CDED587E2960FA0900F48759 /* ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED587D2960FA0900F48759 /* ViewControllerType.swift */; };
 		CDED58822960FEF500F48759 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED58812960FEF500F48759 /* SettingsViewController.swift */; };
 		CDED58842960FF0C00F48759 /* MassegesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED58832960FF0C00F48759 /* MassegesViewController.swift */; };
+		CDED5887296107A600F48759 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED5886296107A600F48759 /* MainTableViewCell.swift */; };
+		CDED5889296107B300F48759 /* MainCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED5888296107B300F48759 /* MainCellModel.swift */; };
+		CDED588B2961080C00F48759 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED588A2961080C00F48759 /* BaseCell.swift */; };
+		CDED588E29610B2800F48759 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDED588D29610B2800F48759 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		CDED587D2960FA0900F48759 /* ViewControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerType.swift; sourceTree = "<group>"; };
 		CDED58812960FEF500F48759 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CDED58832960FF0C00F48759 /* MassegesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassegesViewController.swift; sourceTree = "<group>"; };
+		CDED5886296107A600F48759 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		CDED5888296107B300F48759 /* MainCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellModel.swift; sourceTree = "<group>"; };
+		CDED588A2961080C00F48759 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		CDED588D29610B2800F48759 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				A00A145528BE78CD00A45BAC /* BaseViewController.swift */,
+				CDED588A2961080C00F48759 /* BaseCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -185,6 +194,8 @@
 		CDED58762960F3C400F48759 /* Main part */ = {
 			isa = PBXGroup;
 			children = (
+				CDED588C29610B0600F48759 /* View Model */,
+				CDED58852961078C00F48759 /* Cell */,
 				CDED58772960F3DD00F48759 /* MainViewController.swift */,
 			);
 			path = "Main part";
@@ -220,6 +231,23 @@
 				CDED58832960FF0C00F48759 /* MassegesViewController.swift */,
 			);
 			path = "Masseges part";
+			sourceTree = "<group>";
+		};
+		CDED58852961078C00F48759 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CDED5886296107A600F48759 /* MainTableViewCell.swift */,
+				CDED5888296107B300F48759 /* MainCellModel.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		CDED588C29610B0600F48759 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				CDED588D29610B2800F48759 /* MainViewModel.swift */,
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,16 +367,20 @@
 				A0A81D1028BF83500096309D /* Extension.swift in Sources */,
 				CDED58752960EF0800F48759 /* MainTabBarController.swift in Sources */,
 				A01C892328BE756A00B9DE88 /* LoginViewController.swift in Sources */,
+				CDED5889296107B300F48759 /* MainCellModel.swift in Sources */,
+				CDED5887296107A600F48759 /* MainTableViewCell.swift in Sources */,
 				CDED58732960DE2A00F48759 /* NSObject.swift in Sources */,
 				A01C890F28BE74F500B9DE88 /* AppDelegate.swift in Sources */,
 				CDED587B2960F40E00F48759 /* ProfileViewController.swift in Sources */,
 				A00A145628BE78CD00A45BAC /* BaseViewController.swift in Sources */,
 				CDED58842960FF0C00F48759 /* MassegesViewController.swift in Sources */,
+				CDED588B2961080C00F48759 /* BaseCell.swift in Sources */,
 				CDED587E2960FA0900F48759 /* ViewControllerType.swift in Sources */,
 				CDED58712960D5F800F48759 /* ViewController.swift in Sources */,
 				CDED58822960FEF500F48759 /* SettingsViewController.swift in Sources */,
 				CDED586F2960CF8200F48759 /* LoginViewModel.swift in Sources */,
 				CDED58782960F3DD00F48759 /* MainViewController.swift in Sources */,
+				CDED588E29610B2800F48759 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

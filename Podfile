@@ -5,5 +5,6 @@ target 'E-Store' do
   use_frameworks!
 
   pod 'SnapKit'
+  pod "Kingfisher"
 
 end
