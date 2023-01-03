@@ -16,7 +16,7 @@ enum ViewControllerType{
     var viewController: UIViewController{
         switch self {
         case .home:
-            return MainViewController()
+            return MainViewController(viewModel: MainViewModel())
         case .profile:
             return ProfileViewController()
         case .settings:

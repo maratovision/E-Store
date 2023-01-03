@@ -11,6 +11,8 @@ import Kingfisher
 
 class MainTableViewCell: BaseCell{
     
+    static let identifier = "MainTableViewCell"
+    
     private lazy var movieImage: UIImageView = {
         let image = UIImageView()
         
@@ -22,7 +24,7 @@ class MainTableViewCell: BaseCell{
         let label = UILabel()
         
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 24, weight: .bold)
         
         return label
     }()
@@ -47,8 +49,10 @@ class MainTableViewCell: BaseCell{
         }
     }
     
-    func fill(model: MainCellModel){
-            movieImage.kf.setImage(with: URL(string: model.urlImage))
-            movieName.text = model.name
-        }
+    func confug(movie: PopularMovie){
+        movieName.text = movie.original_title
+        movieImage.kf.setImage(with: URL(string: movie.poster_path!))
+    }
 }
+
+

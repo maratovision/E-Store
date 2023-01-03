@@ -1,4 +1,4 @@
- //
+//
 //  MainViewModel.swift
 //  E-Store
 //
@@ -7,25 +7,21 @@
 
 import Foundation
 
-protocol MainDelegate: AnyObject {
-    func showMovie()
+protocol MainViewModelProtocol{
+    func getPopularMovie(completion: ((PopularMovies) -> Void)?)
 }
 
-class MainViewModel {
+class MainViewModel: MainViewModelProtocol {
+    var networkManager: NetworkManagerProtocol
     
-    private weak var delegate: MainDelegate?
-    
-    init(delegate: MainDelegate){
-        self.delegate = delegate
+    init(networkManager: NetworkManagerProtocol = NetworkManager()){
+        self.networkManager = networkManager
     }
     
-    var movies: [MainCellModel] = []
-    
-    func getAllMovie(){
-        
-        movies.append(MainCellModel(urlImage: "https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05_2.jpg", name: "qwer"))
-        movies.append(MainCellModel(urlImage: "https://static.wikia.nocookie.net/marvels-avengers4475/images/6/63/N7UmKNPcZKKZNb8J1PxPWgsa~2.jpg/revision/latest?cb=20220903204205", name: "Avengers"))
-        movies.append(MainCellModel(urlImage: "https://m.media-amazon.com/images/M/MV5BMTM0MjUzNjkwMl5BMl5BanBnXkFtZTcwNjY0OTk1Mw@@._V1_.jpg", name: "Inception"))
+    func getPopularMovie(completion: ((PopularMovies) -> Void)?){
+        networkManager.getPopularMovie{ (movies) in
+            completion!(movies)
+            print("movies: \(movies)")
+        }
     }
-    
 }
