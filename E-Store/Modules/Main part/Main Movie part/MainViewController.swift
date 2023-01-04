@@ -85,6 +85,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             let poster = movie.poster_path ?? ""
             let vc = DetailMovieViewController(id: id, posterPath: poster)
             navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }
