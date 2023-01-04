@@ -51,7 +51,7 @@ class MainTableViewCell: BaseCell{
         }
     }
     
-    func confug(movie: PopularMovie){
+    func config(movie: PopularMovie){
         movieName.text = movie.original_title
         movieImage.kf.setImage(with: URL(string: networkManager.getImage(endPath: movie.poster_path!)))
     }

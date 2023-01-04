@@ -21,7 +21,6 @@ class MainViewModel: MainViewModelProtocol {
     func getPopularMovie(completion: ((PopularMovies) -> Void)?){
         networkManager.getPopularMovie{ (movies) in
             completion!(movies)
-            print("movies: \(movies)")
         }
     }
 }

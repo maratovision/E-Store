@@ -67,7 +67,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let popularMovies = popularMovies, let result = popularMovies.results{
             let movie = result[indexPath.row]
-            cell.confug(movie: movie)
+            cell.config(movie: movie)
         }
         
         return cell
