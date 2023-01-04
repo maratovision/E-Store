@@ -28,7 +28,6 @@ class BaseCell: UITableViewCell {
     func configure() {
         if !isLoaded {
             isLoaded = true
-            
             addSubViews()
             setupUI()
             onViewLoaded()

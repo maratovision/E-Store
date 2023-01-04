@@ -9,14 +9,14 @@ import Foundation
 
 enum URLStrings{
     case popularMovies
-    case movieByID
+    case movieByID(id: Int)
     
     var URLString: String{
         switch self {
         case .popularMovies:
             return "\(mainPath)popular?\(apiKey)&page=1"
-        case .movieByID:
-            return "https://api.themoviedb.org/3/movie/popular?api_key=bfa674e1ba14a3a8771fc7e880b02137"
+        case let .movieByID(id):
+            return "\(mainPath)\(id)?\(apiKey)"
         }
     }
     

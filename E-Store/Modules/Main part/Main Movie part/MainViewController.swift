@@ -26,7 +26,7 @@ class MainViewController: BaseViewController{
     
     override func setupConstrains() {
         movieTableView.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(80)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -79,7 +79,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if let popularMovies = popularMovies, let result = popularMovies.results{
+            let movie = result[indexPath.row]
+            let id = movie.id ?? 0
+            let poster = movie.poster_path ?? ""
+            let vc = DetailMovieViewController(id: id, posterPath: poster)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

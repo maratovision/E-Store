@@ -34,7 +34,9 @@ class MainTableViewCell: BaseCell{
     override func addSubViews() {
         self.addSubview(movieImage)
         self.addSubview(movieName)
+        self.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 1, alpha: 1)
         setupConstrains()
+        
     }
     
     func setupConstrains(){
@@ -42,11 +44,10 @@ class MainTableViewCell: BaseCell{
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(300)
-            $0.width.equalTo(400)
         }
         
         movieName.snp.makeConstraints{
-            $0.top.equalTo(movieImage.snp.bottom).offset(20)
+            $0.top.equalTo(movieImage.snp.bottom).offset(7)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
