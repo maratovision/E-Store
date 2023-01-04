@@ -29,6 +29,8 @@ class MainTableViewCell: BaseCell{
         return label
     }()
     
+    let networkManager = NetworkManager()
+    
     override func addSubViews() {
         self.addSubview(movieImage)
         self.addSubview(movieName)
@@ -51,8 +53,6 @@ class MainTableViewCell: BaseCell{
     
     func confug(movie: PopularMovie){
         movieName.text = movie.original_title
-        movieImage.kf.setImage(with: URL(string: movie.poster_path!))
+        movieImage.kf.setImage(with: URL(string: networkManager.getImage(endPath: movie.poster_path!)))
     }
 }
-
-

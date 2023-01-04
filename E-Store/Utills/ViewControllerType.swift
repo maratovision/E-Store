@@ -9,59 +9,51 @@ import UIKit
 
 enum ViewControllerType{
     case home
+    case liveTV
     case profile
-    case settings
-    case massages
+    
     
     var viewController: UIViewController{
         switch self {
         case .home:
             return MainViewController(viewModel: MainViewModel())
+        case .liveTV:
+            return SettingsViewController()
         case .profile:
             return ProfileViewController()
-        case .settings:
-            return SettingsViewController()
-        case .massages:
-            return MassegesViewController()
         }
     }
     
     var title: String{
         switch self {
         case .home:
-            return "home"
+            return "Home"
+        case .liveTV:
+            return "Live TV"
         case .profile:
-            return "profile"
-        case .settings:
-            return "settings"
-        case .massages:
-            return "massages"
+            return "User"
         }
     }
     
     var selectedImage: UIImage{
         switch self {
         case .home:
-            return UIImage(named: "home_icon")?.withTintColor(.blue) ?? UIImage()
+            return UIImage(named: "Home")?.withTintColor(.purple) ?? UIImage()
+        case .liveTV:
+            return UIImage(named: "Display")?.withTintColor(.purple) ?? UIImage()
         case .profile:
-            return UIImage(named: "settings_icon")?.withTintColor(.blue) ?? UIImage()
-        case .settings:
-            return UIImage(named: "settings_icon")?.withTintColor(.blue) ?? UIImage()
-        case .massages:
-            return UIImage(named: "home_icon")?.withTintColor(.blue)  ?? UIImage()
+            return UIImage(named: "User")?.withTintColor(.purple) ?? UIImage()
         }
     }
     
     var unSelectedImage: UIImage{
         switch self {
         case .home:
-            return UIImage(named: "home_icon")?.withTintColor(.white) ?? UIImage()
+            return UIImage(named: "Home")?.withTintColor(.black) ?? UIImage()
+        case .liveTV:
+            return UIImage(named: "Display")?.withTintColor(.black) ?? UIImage()
         case .profile:
-            return UIImage(named: "settings_icon")?.withTintColor(.white) ?? UIImage()
-        case .settings:
-            return UIImage(named: "settings_icon")?.withTintColor(.white) ?? UIImage()
-        case .massages:
-            return UIImage(named: "home_icon")?.withTintColor(.white)  ?? UIImage()
+            return UIImage(named: "User")?.withTintColor(.black) ?? UIImage()
         }
     }
 }
